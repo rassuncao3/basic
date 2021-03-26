@@ -7,6 +7,7 @@ package br.com.basic.view;
 
 import java.sql.*;
 import br.com.basic.dal.ModuleConection;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,15 +26,28 @@ public class FrmLogin extends javax.swing.JFrame {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, user.getText());
             pst.setString(2, pwd.getText());
-            rs=pst.executeQuery();
-            if(rs.next()){
-                FrmPrincipal principal=new FrmPrincipal();
-                principal.setVisible(true);
-            }else{
-                JOptionPane.showMessageDialog(null,"Usuario ou senha Incorretos");
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                String level = rs.getString(6);
+                if (level.equals("a")) {
+
+                    FrmPrincipal principal = new FrmPrincipal();
+                    principal.setVisible(true);
+                    FrmPrincipal.MenRelServ.setEnabled(true);
+                    FrmPrincipal.MenUsuario.setEnabled(true);
+                    FrmPrincipal.Usuario.setText(rs.getString(2));
+                    FrmPrincipal.Usuario.setForeground(Color.red);
+                    this.dispose();
+                } else {
+                    FrmPrincipal principal = new FrmPrincipal();
+                    principal.setVisible(true);
+                    this.dispose();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario ou senha Incorretos");
             }
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null,"Erro"+e);
+            JOptionPane.showMessageDialog(null, "Erro" + e);
         }
     }
 
@@ -192,13 +206,13 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-     logar();   // TODO add your handling code here:
-     dispose();
+        logar();   // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLoginKeyPressed
-logar(); 
-dispose();// TODO add your handling code here:
+        logar();
+        dispose();// TODO add your handling code here:
     }//GEN-LAST:event_btnLoginKeyPressed
 
     /**
