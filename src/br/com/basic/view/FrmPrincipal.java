@@ -46,11 +46,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MenRel = new javax.swing.JMenu();
         MenRelServ = new javax.swing.JMenu();
         MenMan = new javax.swing.JMenu();
-        MenUsuario = new javax.swing.JMenu();
+        MenUsuario = new javax.swing.JMenuItem();
         MenOpc = new javax.swing.JMenu();
         MenSobre = new javax.swing.JMenuItem();
         MenCalc = new javax.swing.JMenuItem();
-        MenSair = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -150,7 +150,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MenMan.setText("Manutencao");
 
         MenUsuario.setText("Usuarios");
-        MenUsuario.setEnabled(false);
+        MenUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenUsuarioActionPerformed(evt);
+            }
+        });
         MenMan.add(MenUsuario);
 
         Menu.add(MenMan);
@@ -165,13 +169,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         Menu.add(MenOpc);
 
-        MenSair.setText("Sair");
-        MenSair.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1.setText("Sair");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenSairActionPerformed(evt);
+                jMenu1ActionPerformed(evt);
             }
         });
-        Menu.add(MenSair);
+        Menu.add(jMenu1);
 
         setJMenuBar(Menu);
 
@@ -199,13 +203,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Data.setText(formatador.format(data));
     }//GEN-LAST:event_formWindowActivated
 
-    private void MenSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenSairActionPerformed
-     /*   int sair = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair ?", "ATENCAO", JOptionPane.YES_NO_OPTION);
+    private void MenUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenUsuarioActionPerformed
+       FrmUsuarios usuario=new FrmUsuarios();
+        usuario.setVisible(true);
+        Desktop.add(usuario);
+    }//GEN-LAST:event_MenUsuarioActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+         int sair = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair ?", "ATENCAO", JOptionPane.YES_NO_OPTION);
         if (sair == JOptionPane.YES_OPTION) {
             System.exit(0);
-        }*/
-     System.exit(0);
-    }//GEN-LAST:event_MenSairActionPerformed
+        }
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,14 +260,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MenOpc;
     private javax.swing.JMenu MenRel;
     public static javax.swing.JMenu MenRelServ;
-    private javax.swing.JMenu MenSair;
     private javax.swing.JMenuItem MenSobre;
-    public static javax.swing.JMenu MenUsuario;
+    public static javax.swing.JMenuItem MenUsuario;
     private javax.swing.JMenuBar Menu;
     public static javax.swing.JLabel Usuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JMenu menCad;
